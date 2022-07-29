@@ -8,7 +8,7 @@ const {
 } = require('../utils/response-codes');
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({})
+  Movie.find({ owner: req.user._id })
     .then((movies) => {
       res.send(movies);
     })
