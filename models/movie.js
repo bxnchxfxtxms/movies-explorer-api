@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 const dataValidator = require('validator');
+const {
+  posterUrlIsRequiredMessage,
+  trailerUrlIsRequiredMessage,
+  posterThumbnailUrlIsRequiredMessage,
+} = require('../utils/messages');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -29,7 +34,7 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return dataValidator.isURL(v);
       },
-      message: 'Необходимо ввести ссылку на постер',
+      message: posterUrlIsRequiredMessage,
     },
   },
   trailerLink: {
@@ -39,7 +44,7 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return dataValidator.isURL(v);
       },
-      message: 'Необходимо ввести ссылку на трейлер',
+      message: trailerUrlIsRequiredMessage,
     },
   },
   thumbnail: {
@@ -49,7 +54,7 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return dataValidator.isURL(v);
       },
-      message: 'Необходимо ввести ссылку на превью постера',
+      message: posterThumbnailUrlIsRequiredMessage,
     },
   },
   owner: {

@@ -7,6 +7,9 @@ const {
   validateUserCreation,
   validateAuthentification,
 } = require('../utils/validators');
+const {
+  pageNotFoundMessage,
+} = require('../utils/messages');
 
 const {
   login,
@@ -29,7 +32,7 @@ router.use('/signout', (req, res, next) => {
 });
 
 router.use((req, res, next) => {
-  next(new NotFoundError('Страница не найдена'));
+  next(new NotFoundError(pageNotFoundMessage));
 });
 
 module.exports = router;
