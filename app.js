@@ -8,7 +8,7 @@ const routes = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
 
-const { PORT = 3000 } = process.env;
+// const { PORT = 3000 } = process.env;
 
 const app = express();
 
@@ -16,7 +16,9 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/moviesdb');
+// mongoose.connect('mongodb://localhost:27017/moviesdb');
+
+mongoose.connect(process.env.dataMovies);
 
 app.use(requestLogger);
 
@@ -30,4 +32,4 @@ app.use(errors());
 
 app.use(errorHandler);
 
-app.listen(PORT);
+app.listen(process.env.PORT);
