@@ -7,8 +7,11 @@ const { errors } = require('celebrate');
 const routes = require('./routes');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
-
-// const { PORT = 3000 } = process.env;
+const {
+  dataMovies,
+  PORT,
+  NODE_ENV,
+} = require('./utils/config');
 
 const app = express();
 
@@ -16,9 +19,9 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// mongoose.connect('mongodb://localhost:27017/moviesdb');
-
-mongoose.connect(process.env.dataMovies);
+mongoose.connect(
+  NODE_ENV === 'production' ? process.env.dataMovies : dataMovies,
+);
 
 app.use(requestLogger);
 
@@ -32,4 +35,6 @@ app.use(errors());
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT);
+app.listen(
+  NODE_ENV === 'production' ? process.env.PORT : PORT,
+);

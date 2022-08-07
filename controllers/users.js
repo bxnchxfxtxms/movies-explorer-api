@@ -1,5 +1,3 @@
-// const { NODE_ENV, JWT_SECRET } = process.env;
-// require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { NODE_ENV, JWT_SECRET } = require('../utils/config');
