@@ -16,7 +16,7 @@ const {
 const allowedCors = [
   'http://m0viesexpl0rer.nomoredomains.xyz',
   'https://m0viesexpl0rer.nomoredomains.xyz',
-  'localhost:3000',
+  'http://localhost:3000',
 ];
 
 const app = express();
